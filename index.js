@@ -38,7 +38,7 @@ function promptManager() {
             type: "input",
             name: "officeNumber",
             message: "What is the team manager's office number?",
-        }
+        },
     ])
     .then((answers) => {
         const manager = new Manager(
@@ -50,6 +50,45 @@ function promptManager() {
         // All the answers pushed to teamMembers array identified above
         teamMembers.push(manager);
         // Calls for menu function to choose wether to add more information
+        menu();
+    })
+
+}
+
+// Prompt questions for Engineer 
+function promptEngineer() {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is engineer's name?",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your engineer's ID?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your engineer's email?",
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is your engineer's Github username?",
+        },
+    ])
+    .then((answers) => {
+        const engineer = new Engineer(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.github
+        );
+        // All the answers pushed to teamMembers array identified above
+        teamMembers.push(engineer);
         menu();
     })
 
