@@ -94,6 +94,7 @@ function promptEngineer() {
 
 }
 
+// Prompt questions for Intern
 function promptIntern() {
     inquirer
     .prompt([
@@ -119,24 +120,61 @@ function promptIntern() {
         },
     ])
     .then((answers) => {
+        // Creates a new variable intern
         const intern = new Intern(
           answers.name,
           answers.id,
           answers.email,
           answers.school
         );
+        // Answers pushed to teamMembers array above 
         teamMembers.push(intern);
+        // Calls for menu function
         menu();
       });
 };
 
+// Menu function gives us a list to choose from then aswers calls for prompts or exits and calls for generateHTML()
+function menu() {
+    inquirer
+    .prompt([
+        {
+            type: "list",
+            name: "menu",
+            message: "Which type of team member would you like to add?",
+            choices: ["Engineer", "Intern", "I don't want to add anymore team members"],
+        },
+    ])
+    .then((answers) => {
+        switch (answers.menu) {
+            case "Engineer" :
+                promptEngineer();
+                break;
+            case "Intern" :
+                promptIntern();
+                break;
+            case "I don't want to add anymore team members" :
+                generateHTML();
+                break;
+                default:
+                break;
+        }
+    });
+}
+
+// Function generates HTML files and writes it to output directory
+function generateHTML() {
+    const output = render(teamMembers);
+
+    // Make sure the output directory exists
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    fs.writeFile(outputPath,output, err => {
+        err ? console.error(`error! ${err}`) : console.log ("All done!");
+    });
+}
 
 //Starts the application
 promptManager();
 
-
-// const output = render(employees);
-
-// fs.writeFile(outputPath,output, err => {
-//     err ? console.error(`error! ${err}`) : console.log ("All done!");
-// });
