@@ -13,3 +13,11 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+
+
+
+// const output = render(employees);
+
+// fs.writeFile(outputPath,output, err => {
+//     err ? console.error(`error! ${err}`) : console.log ("All done!");
+// });
