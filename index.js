@@ -94,6 +94,43 @@ function promptEngineer() {
 
 }
 
+function promptIntern() {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is your intern's name?",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your intern's ID?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your intern's email?",
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is your intern's school?",
+        },
+    ])
+    .then((answers) => {
+        const intern = new Intern(
+          answers.name,
+          answers.id,
+          answers.email,
+          answers.school
+        );
+        teamMembers.push(intern);
+        menu();
+      });
+};
+
+
 //Starts the application
 promptManager();
 
