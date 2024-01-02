@@ -1,0 +1,15 @@
+#card-header {
+    background-color: red;
+    color: white;
+}
+.card-header {
+    background-color: rgb(21, 84, 255);
+    color: white;   
+}
+.card-body {
+    background-color: rgb(238, 235, 235);
+}
+.card { 
+    margin: 10px;
+    box-shadow: 5px 5px 10px;
+}
